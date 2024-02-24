@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Component with Dropdowns</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+@font-face { 
+  font-family: "font-red-hat-bold";
+  src: url("font-red-hat/RedHatDisplay-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "font-red-hat-medium";
+  src: url("font-red-hat/RedHatDisplay-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "font-red-hat-regular";
+  src: url("font-red-hat/RedHatDisplay-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "font-red-hat-light";
+  src: url("font-red-hat/RedHatDisplay-Light.ttf") format("truetype");
+}
+/* 2nd  font */
+
+@font-face {
+  font-family: "font-kugi";
+  src: url("font-kuglile/Kugile_Demo.ttf") format("truetype");
+}
+      .cardcontractotbtn {
+        /* Body/12px: Medium */
+        font-family: "Red Hat Display";
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 166.667% */
+        text-decoration: none;
+        color: var(--Neutral-Neutral-700, #374151);
+      }
+
+      .contractorbtnWrapper {
+        display: flex;
+        padding: 8px 0px;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 15px;
+        /* align-self: stretch; */
+        /* flex-wrap: wrap; */
+      }
+      .c-btn-Wrapper {
+        /* padding: 4px 16px; */
+        border-radius: 22px;
+        border: 1px solid var(--Success-Success-100, #dcfce7);
+        background: var(--Success-Success-50, #f0fdf4);
+        text-decoration: none;
+
+        padding: 4px 16px;
+      }
+
+      .nameAndstarWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: stretch;
+        padding-top: 10px;
+      }
+      .namecontroctor {
+        color: var(--Neutral-Neutral-700, #374151);
+
+        /* Body/18px: Medium */
+        font-family: "Red Hat Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px; /* 155.556% */
+      }
+      .starpngcontroctor {
+        margin-left: 2px;
+        padding-bottom: 7px;
+}
+      
+      .rateaurstar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+       .textStar{
+        color: var(--Neutral-Neutral-400, #9CA3AF);
+
+/* Body/12px: Regular */
+font-family: "Red Hat Display";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 166.667% */
+       }
+      .contactbtnContainer {
+        display: flex;
+        padding: 8px 30px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+        margin-top: 8px;
+      }
+      .contactbtnperson {
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        width: 120%;
+        /* CTA/14px: Medium */
+        font-family: "Red Hat Display";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 171.429% */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        /* border: none; */
+        background: var(
+          --Button-Gradient,
+          linear-gradient(90deg, #ac5821 0%, #e1722a 100%)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border: 2px solid #e1722a;
+        border-radius: 4px;
+        display: none; /* Hide by default */
+      }
+      .ba-card {
+        contractor-filter-box-sizing: border-contractor-filter-box;
+        padding: 0px;
+        /* margin: 35px; */
+        border: 0px solid #ccc;
+        text-align: left;
+        position: relative;
+        /* overflow: hidden; */
+        transition: transform 0.3s;
+      }
+
+      .ba-card:hover .ba-listcardbody {
+        transform: translateY(-30%);
+      }
+      .ba-listcardbody {
+        transition: transform 0.5s;
+        background-color: #ffffff;
+        position: relative; /* Add position relative to contain absolute positioned elements */
+        padding: 1px;
+      }
+
+      .ba-card:hover .contactbtnperson {
+        display: block;
+      }
+      .search-contractor-filter-box {
+        margin-top: 20px;
+      }
+      .cardWrapperContrctor {
+        margin-top: 20px;
+      }
+
+      .search-contractor-filter-box {
+        position: relative;
+        display: flex;
+        width: 248px;
+        height: 40px;
+        padding: 10px 8px;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        border: 1px solid var(--Neutral-Neutral-300, #d1d5db);
+        background: var(--Neutral-Neutral-0, #fff);
+        
+      }
+
+      .search-contractor-filter-box input[type="text"] {
+        padding-right: 30px; /* Adjust according to the width of your icon */
+      }
+
+      .search-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px; /* Adjust if needed */
+        transform: translateY(-50%);
+        cursor: pointer;
+        border: none;
+        background-color: #fff;
+      }
+
+      .serchcontroctor {
+        /* color: var(--Neutral-Neutral-400, #9CA3AF); */
+        border: none;
+        outline: none;
+
+        /* Body/14px: Regular */
+        font-family: "Red Hat Display";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
+
+      .dropdownfilters {
+        overflow: hidden;
+        color: var(--Neutral-Neutral-500, #6b7280);
+        text-overflow: ellipsis;
+
+        /* Body/14px: Regular */
+        font-family: "Red Hat Display";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
+
+      .search-filter {
+        display: flex; /* Use flexcontractor-filter-box for horizontal alignment */
+        flex-direction: row;
+        margin-top: 20px;
+
+      }
+
+      .filter-responsive {
+        margin-left: 10px; /* Create spacing between elements */
+
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      .headingFilter {
+        color: var(--Neutral-Neutral-700, #374151);
+
+        /* Body/18px: Bold */
+        font-family: "Red Hat Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; /* 155.556% */
+      }
+
+      .filter-responsive img {
+        /* Center image vertically: */
+        display: block;
+        width: 20px; /* Adjust dimensions as needed */
+        height: 35px;
+        margin: 0 auto; /* Center horizontally */
+        /* Optional padding:
+  padding: 5px;
+  */
+      }
+
+      @media (min-width: 768px) {
+        .filter-responsive {
+          display: none;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .filter-responsive {
+          display: block;
+          margin-top: 20px;
+        }
+        .select-contractor-filter-box {
+          display: none;
+        }
+        .search-contractor-filter-box {
+          width: 100%;
+          padding-top: 10px;
+        }
+        .headingFilter {
+          display: none;
+        }
+        .topTitlehead p {
+          margin-top: 0px;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 30px;
+          text-wrap: wrap;
+        }
+        .search-filter {
+          margin-bottom: 30px;
+          
+        }
+        .row.nameAndstarWrapper {
+          flex-direction: column-reverse;
+          align-items: flex-start;
+        }
+        .col.rateaurstar {
+          margin-top: 15px; /* Add some top margin to create space between stars and name */
+          margin-bottom: 5px;
+        }
+        .rateaurstar {
+          justify-content: flex-start;
+        }
+
+        .card-text {
+          padding-top: 10px;
+        }
+      }
+      .topTitlehead {
+        margin-top: 30px;
+        color: var(--Neutral-Neutral-700, #374151);
+
+        /* Body/28px: Bold */
+        font-family: "Red Hat Display";
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 40px; /* 142.857% */
+      }
+      
+      /* ====================================================================================================== */
+      /* ---------------------   - Section DropDown -------------------- */
+
+      /* ---------------------------------------------------------------------------------- */
+
+      .contractor-filter-box {
+        width: 100% !important;
+        max-height: 300px !important;
+        overflow-y: auto;
+      }
+      /* contractor-filter-box ScrollBar width control */
+      .contractor-filter-box::-webkit-scrollbar {
+        width: 3px !important;
+      }
+
+      .contractor-filter-box::-webkit-scrollbar-thumb {
+        background-color: #9ca3af !important;
+      }
+
+      .filter-dropdown {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #333e50 !important;
+        font-family: Manrope !important;
+        font-size: 12px !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 22px !important;
+        white-space: nowrap !important;
+        width: 100% !important;
+        text-align: start !important;
+        /* background: #fff !important; */
+        border-radius: 0 !important;
+        padding: 10px 0px 5px 0px !important;
+        border-bottom: 1px solid var(--Neutral-Neutral-100, #F3F4F6);
+           background: var(--Neutral-Neutral-0, #FFF);
+      }
+
+      .contractor-filter-dropdown-option {
+        width: 100%;
+        border-radius: 0 !important;
+        position: absolute !important;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: 0 !important; /* Adjust padding as needed */
+        margin: 0.2rem 0 !important;
+        font-size: 12px;
+        color: #354257;
+        text-align: left;
+        list-style: none;
+        background-color: #ffffff;
+        background-clip: padding-contractor-filter-box;
+        border: 1px solid #ebf0f9;
+        border-radius: 0.25rem;
+      }
+      .filter-dropdown-item {
+        padding: 8px 10px !important;
+        clear: both;
+        color: #354257;
+        text-align: left;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        font-size: 12px;
+        white-space: unset !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: 22px !important;
+        height: auto !important;
+        overflow: hidden !important;
+        word-wrap: break-word !important; /* Ensure this property is present */
+        
+        
+      }
+      .filter-dropdown-item:hover{
+        color: #FFF9F5;
+        font-family: 500;
+background: var(--Button-Gradient, linear-gradient(90deg, #AC5821 0%, #E1722A 100%));
+        
+      }
+
+      @media (max-width: 767.98px) {
+        .ellip {
+          white-space: nowrap;
+          width: 280px;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          -ms-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          pointer-events: none; /* Add this line */
+        }
+        .fill-listlabel{
+          display: none;
+        }
+      }
+      .contractor-filter-dropdown-menu {
+        display: none;
+      }
+      .contractor-filter-dropdown-menu.show {
+        display: block;
+      }
+      .hidden {
+        display: none;
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .form-label{
+        color: var(--Neutral-Neutral-700, #374151);
+text-align: center;
+
+/* Body/18px: Bold */
+font-family: "Red Hat Display";
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 28px; /* 155.556% */
+      }
+      .ellip{
+        overflow: hidden;
+color: var(--Neutral-Neutral-500, #6B7280);
+text-overflow: ellipsis;
+
+/* Body/14px: Regular */
+font-family: "Red Hat Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 171.429% */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-8 topTitlehead">
+          <p>Lorem ipsum dolor sit amet consectetur Dignissim.</p>
+        </div>
+        <div class="col-md-4 col-sm-4 search-filter">
+          <div class="search-contractor-filter-box">
+            <input
+              type="text"
+              placeholder="Search Contractor"
+              class="serchcontroctor"
+            />
+            <button type="submit" class="search-icon">
+              <img src="./search.png" />
+            </button>
+          </div>
+          <div class="input-wrapper " id="filterIcon">
+            <!-- <input  placeholder="Filter"  > -->
+            <button class="filter-responsive" >
+              <img src="./filter.png" alt="Filter Icon" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- =============================================== -->
+        <!-- desktop dropdown============================ -->
+        <div class="col-md-2">
+          <div class="fill-listlabel" id="showdropdownmob">
+            <div class="mb-3">
+              <label for="agency" class="form-label">Filters</label>
+              <!-- first dropdown -->
+              <div class="input-group">
+                <div
+                  id="id_profile_field_agency-Button"
+                  class="filter-dropdown  dropdown-toggle-split"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span id="agency-work" class="ellip dropdown-value"
+                    >Ratings</span
+                  >
+                 <div> <img src="./arrow-chevron-down.png"></div>
+                </div>
+                <ul
+                  class="contractor-filter-dropdown-menu contractor-filter-dropdown-option contractor-filter-box"
+                  id="id_profile_field_agency"
+                ></ul>
+              </div>
+              <!-- 2nd dropdown -->
+              <div class="input-group">
+                <div
+                  id="dropdown2"
+                  class="filter-dropdown  dropdown-toggle-split"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span
+                    id="dropdown2-select-option"
+                    class="ellip dropdown-value"
+                    >Speciality</span
+                  >
+                  <div> <img src="./arrow-chevron-down.png"></div>
+                </div>
+                <ul
+                  class="contractor-filter-dropdown-menu contractor-filter-dropdown-option contractor-filter-box"
+                  id="dropdown2-option"
+                ></ul>
+              </div>
+              <!-- 3rd dropdown -->
+              <div class="input-group">
+                <div
+                  id="dropdown3"
+                  class="filter-dropdown  dropdown-toggle-split"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span
+                    id="dropdown3-select-option"
+                    class="ellip dropdown-value"
+                    >Location</span
+                  >
+                  <div> <img src="./arrow-chevron-down.png"></div>
+                </div>
+                <ul
+                  class="contractor-filter-dropdown-menu contractor-filter-dropdown-option contractor-filter-box"
+                  id="dropdown3-option"
+                ></ul>
+              </div>
+            </div>
+
+           
+
+          
+          </div>
+        </div>
+        <!-- end dropdown==================================================================  -->
+  <!--   ========================> card  start here <====================================================== -->
+        <div class="col-md-9 cardWrapperContrctor">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0 contrcrordetails">
+                <img
+                  src="./stock-photo-portrait-of-multiethnic-architect-with-blueprints-in-creative-office-mature-middle-eastern-1283682703 (1) 1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- card2 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0">
+                <img src="./1880745361 1.png" class="card-img-top" alt="..." />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- card 3 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0">
+                <img
+                  src="./stock-photo-portrait-of-multiethnic-architect-with-blueprints-in-creative-office-mature-middle-eastern-1283682703 (1) 1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- card-4 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0">
+                <img
+                  src="./stock-photo-portrait-of-multiethnic-architect-with-blueprints-in-creative-office-mature-middle-eastern-1283682703 (1) 1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 card -->
+            <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0 contrcrordetails">
+                <img
+                  src="./stock-photo-portrait-of-multiethnic-architect-with-blueprints-in-creative-office-mature-middle-eastern-1283682703 (1) 1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- 6card -->
+             <div class="col-lg-4 col-md-6">
+              <div class="ba-card mb-3 border-0 contrcrordetails">
+                <img
+                  src="./stock-photo-portrait-of-multiethnic-architect-with-blueprints-in-creative-office-mature-middle-eastern-1283682703 (1) 1.png"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body ba-listcardbody">
+                  <div class="row nameAndstarWrapper">
+                    <div class="col">
+                      <span class="card-title namecontroctor"
+                        >Vikas Jagtap</span
+                      >
+                    </div>
+                    <div class="col rateaurstar">
+                      <div>
+                        <img src="./Frame.png" class="starpngcontroctor" />
+                      </div>
+                      <div class="textStar">5.0 Stars</div>
+                    </div>
+                  </div>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the .
+                  </p>
+                  <div class="contractorbtnWrapper">
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                    <div class="c-btn-Wrapper">
+                      <a class="cardcontractotbtn">specilty</a>
+                    </div>
+                  </div>
+                  <div class="contactbtnContainer">
+                    <button class="contactbtnperson">+91 8456977569</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            
+            <!-- Add more card columns as needed -->
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- js start====================================================================== -->
+    <script>
+      
+
+      // JavaScript to display only 4 cards on mobile screens======================================
+
+      function hideExtraCards() {
+    // Get all card elements
+    const cards = document.querySelectorAll('.ba-card');
+
+    // Check if screen size is less than or equal to 767px (mobile view)
+    if (window.innerWidth <= 767) {
+      // Loop through each card starting from the 5th card
+      for (let i = 4; i < cards.length; i++) {
+        // Hide the card
+        cards[i].style.display = 'none';
+      }
+    } else {
+      // If screen size is larger than 767px, display all cards
+      cards.forEach(card => {
+        card.style.display = 'block';
+      });
+    }
+  }
+
+  // Call the function initially
+  hideExtraCards();
+
+  // Add event listener to window resize event to adjust card display
+  window.addEventListener('resize', hideExtraCards);
+
+     
+      // --------------------------DropDown Start-------------------------------------------------------------------------
+
+      function drop() {
+        function initializeDropdown(buttonId, menuId, valueId, options) {
+          var dropdownButton = document.getElementById(buttonId);
+          var dropdownMenu = document.getElementById(menuId);
+          var valueElement = document.getElementById(valueId);
+
+          dropdownButton.addEventListener("click", function (event) {
+            event.stopPropagation(); // Preventing event from bubbling up
+
+            // Close all other dropdown menus
+            closeAllDropdowns();
+
+            dropdownMenu.classList.toggle("show");
+          });
+
+          valueElement.addEventListener("click", function (event) {
+            event.stopPropagation(); // Preventing event from bubbling up
+
+            // Close all other dropdown menus
+            closeAllDropdowns();
+
+            dropdownMenu.classList.toggle("show");
+          });
+
+          dropdownMenu
+            .querySelectorAll(".filter-dropdown-item")
+            .forEach(function (item) {
+              item.addEventListener("click", function (event) {
+                event.stopPropagation(); // Preventing event from bubbling up
+                valueElement.textContent = this.textContent;
+                dropdownMenu.classList.remove("show");
+              });
+            });
+
+          // Adding event listener to close dropdown when clicking outside
+          document.addEventListener("click", function (event) {
+            if (
+              !event.target.matches("#" + buttonId) &&
+              !event.target.matches(".filter-dropdown-item")
+            ) {
+              dropdownMenu.classList.remove("show");
+            }
+          });
+
+          // Populate options
+          options.forEach(function (option) {
+            let li = document.createElement("li");
+            li.classList.add("filter-dropdown-item");
+            li.textContent = option;
+            dropdownMenu.appendChild(li);
+            // Add option click event listener
+            li.addEventListener("click", function () {
+              valueElement.textContent = option;
+              dropdownMenu.classList.remove("show");
+            });
+          });
+
+          // Function to close all dropdown menus
+          function closeAllDropdowns() {
+            document
+              .querySelectorAll(".contractor-filter-dropdown-menu")
+              .forEach(function (menu) {
+                if (menu !== dropdownMenu) {
+                  menu.classList.remove("show");
+                }
+              });
+          }
+        }
+
+        // Define the list of options for each dropdown
+        let ratings = [
+          "5 Star",
+          "4 Star",
+          "3 star",
+          "2 Star",
+          "1 Star",
+        ];
+        let countryOptions = ["INDONESIA"];
+
+        // Define the list of options
+        let cityOptions = [
+         "Dehli",
+         "Mumbai",
+         "Bhopal",
+         "Indore",
+         "lucknow",
+         "kanpur",
+         "Haidrabaad",
+         "kerala",
+        ];
+
+        // Define the list of options
+        let speciality = [
+         "Customer",
+         "Architect",
+         "Contractor",
+         "Dealer",
+         "Manufacturer",
+         "Other",
+        ];
+
+        // Initialize each dropdown using the initializeDropdown function
+        initializeDropdown(
+          "id_profile_field_agency-Button",
+          "id_profile_field_agency",
+          "agency-work",
+          ratings
+        );
+        initializeDropdown(
+          "dropdown2",
+          "dropdown2-option",
+          "dropdown2-select-option",
+          speciality
+        );
+        initializeDropdown(
+          "dropdown3",
+          "dropdown3-option",
+          "dropdown3-select-option",
+          cityOptions 
+        );
+      }
+      drop();
+
+
+      // mobile dropdown
+
+      
+      const filterIcon = document.getElementById("filterIcon");
+const listLabel = document.querySelector(".fill-listlabel");
+
+filterIcon.addEventListener('click', () => {
+    if (listLabel.style.display === "none") {
+        listLabel.style.display = "block";
+    } else {
+        listLabel.style.display = "none";
+    }
+});
+
+ 
+    </script>
+  </body>
+</html>
